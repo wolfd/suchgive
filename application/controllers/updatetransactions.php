@@ -21,7 +21,6 @@ class UpdateTransactions extends CI_Controller {
 
     public function update()
     {
-        echo "UPDATING TRANSACTIONS!!!";
         $this->_update();
     }
 
@@ -139,7 +138,6 @@ class UpdateTransactions extends CI_Controller {
 
         $shibetoshi_received = $this->JSONtoAmount($this->rpc->getreceivedbyaccount($charity_account, MINIMUM_CONFIRMATIONS_GUESS));
         $update_query_string = 'UPDATE  `give`.`charities` SET  `shibetoshi_received` =  \''.$shibetoshi_received.'\' WHERE  `charities`.`id` ='.$charity_id.';';
-        echo "<br>$charity_account: ".$shibetoshi_received;
         $response = $this->db->query($update_query_string);
 
 
