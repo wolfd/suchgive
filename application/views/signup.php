@@ -57,8 +57,7 @@ Doesn't work yet.
     <div class="captcha">
 <?php
   require_once(APPPATH.'libraries/recaptchalib.php');
-  $publickey = "6LeJRO4SAAAAAIV1C_ScQb3dtV855LBefVgmLau5"; // you got this from the signup page
-  echo recaptcha_get_html($publickey);
+  echo recaptcha_get_html(RECAPTCHA_PUBLIC_KEY);
 ?>
     </div>
   </div>
