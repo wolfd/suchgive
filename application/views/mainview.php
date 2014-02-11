@@ -5,7 +5,7 @@
     	<h1><?=$battle['zero_name']?></h4>
     	<p><?=$battle['zero_description']?></p>
     	<p><?=$battle['zero_url']?></p>
-    	<h2>Donated: <?php echo ($battle['zero_shibetoshi'] / (1e8 * 2)) ?> Ɖ</h2>
+    	<h2>Donated: <?php echo ($battle['zero_shibetoshi'] / 1e8) ?> Ɖ</h2>
     	<p><?php if ($logged_in) echo $zero_address;?></p>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <h4><?=$battle['battle_description']?></h4>
     <div class="reward-pool">
       <h3>Reward Pool:</h3>
-      <h2><?php echo (($battle['zero_shibetoshi'] / (1e8 * 2)) + ($battle['one_shibetoshi'] / (1e8 * 2))) ?> Ɖ</h2>
+      <h2><?php echo ($battle['reward_shibetoshi'] / 1e8) ?> Ɖ</h2>
       <p>Doge that will go to the winning charity at the end of the battle</p>
     </div>
   </div>
@@ -28,7 +28,7 @@
     	<h1><?=$battle['one_name']?></h4>
     	<p><?=$battle['one_description']?></p>
     	<p><?=$battle['one_url']?></p>
-    	<h2>Donated: <?php echo ($battle['one_shibetoshi'] / (1e8 * 2)) ?> Ɖ</h2>
+    	<h2>Donated: <?php echo ($battle['one_shibetoshi'] / 1e8) ?> Ɖ</h2>
     	<p><?php if ($logged_in) echo $one_address;?></p>
     </div>
   </div>

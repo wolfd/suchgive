@@ -25,6 +25,10 @@ class Main extends CI_Controller {
         if (isset($data['battle']) && isset($data['battle']['related_charity_zero']))
         {
             $data['battle_running'] = true;
+            $data['battle']['reward_shibetoshi'] = ($data['battle']['zero_shibetoshi'] + $data['battle']['one_shibetoshi']) / 2;
+            $data['battle']['zero_shibetoshi'] = $data['battle']['zero_shibetoshi'] / 2;
+            $data['battle']['one_shibetoshi'] = $data['battle']['one_shibetoshi'] / 2;
+
         }
         else
         {
@@ -47,6 +51,7 @@ class Main extends CI_Controller {
             $data['battle']['one_account'] = "";
             $data['battle']['zero_shibetoshi'] = "0";
             $data['battle']['one_shibetoshi'] = "0";
+            $data['battle']['reward_shibetoshi'] = "0";
         }
         //get the current user if logged in
         if ($data['logged_in'])
