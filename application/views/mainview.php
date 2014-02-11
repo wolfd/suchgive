@@ -36,7 +36,7 @@
 <div class="padded-description">
   <p class="lead">competitive giving in the name of doge</p>
   <p class="lead">What is this?</p>
-  <p>A website created to gamify charitible giving in the hope that it will encourage people to give more money, and give it faster.</p>
+  <p>A website created to gamify charitable giving in the hope that it will encourage people to give more money, and give it faster.</p>
 
   <p class="lead">How does it work?</p>
   <p>Two charities are put head to head in a "charity battle" that lasts for a for a few days. During that time, users donate to the charity that they believe in most. Every time a donation is made, half of the Doge goes toward a "reward pool", and the other half goes directly to the charity's account. At the end of the battle, the charity that has the most Doge in their account is given the reward pool in addition to their normal earnings. The losing charity still gets the money in their account. Absolutely none of the money goes to me.</p>

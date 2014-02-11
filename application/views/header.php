@@ -35,22 +35,22 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li<?php echo ($active_page == "home" ? ' class="active"' : ''); ?>><a href="/">Home</a></li>
-						<li<?php echo ($active_page == "about" ? ' class="active"' : ''); ?>><a href="/about">About</a></li>
-						<li<?php echo ($active_page == "contact" ? ' class="active"' : ''); ?>><a href="/contact">Contact</a></li>
+						<li<?php echo ($active_page == "home" ? ' class="active"' : ''); ?>><a href="/">home</a></li>
+						<li<?php echo ($active_page == "about" ? ' class="active"' : ''); ?>><a href="/about">about</a></li>
+						<li<?php echo ($active_page == "contact" ? ' class="active"' : ''); ?>><a href="/contact">contact</a></li>
 					</ul>
 					<?php 
 					if (!$logged_in) {
 					?>
 					<form class="navbar-form navbar-right" role="form" name="login-form" action="/account/login" method="post">
 						<div class="form-group">
-							<input type="text" name="email" placeholder="Email" class="form-control">
+							<input type="text" name="email" placeholder="email" class="form-control">
 						</div>
 						<div class="form-group">
-							<input type="password" name="password" placeholder="Password" class="form-control">
+							<input type="password" name="password" placeholder="password" class="form-control">
 						</div>
-						<button type="submit" class="btn btn-success">Sign in</button>
-						<a class="btn btn-primary" href="/account/signup">Sign up</a>
+						<button type="submit" class="btn btn-success">sign in</button>
+						<a class="btn btn-primary" href="/account/signup">sign up</a>
 					</form>
 					<?php 
 					}
@@ -58,8 +58,8 @@
 					?>
 					<div class="navbar-right">
 						<ul class="nav navbar-nav">
-							<li<?php echo ($active_page == "account" ? ' class="active"' : ''); ?>><a href="/account">My Account</a></li>
-							<li><a href="/account/logout">Logout</a></li>
+							<li<?php echo ($active_page == "account" ? ' class="active"' : ''); ?>><a href="/account">my account</a></li>
+							<li><a href="/account/logout">logout</a></li>
 						</ul>
 					</div>
 					<?php
