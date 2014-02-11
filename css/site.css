@@ -1,0 +1,66 @@
+.suchgive-content {
+	padding-top: 50px;
+}
+
+.captcha {
+	padding: 10px;
+}
+
+.left-side, .right-side {
+	margin: 10px;
+	padding: 10px;
+	background: #F2F0EA;
+}
+
+.left-side {
+	-webkit-box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
+	box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
+}
+
+.right-side {
+	-webkit-box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
+	-moz-box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
+	box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
+}
+
+.right-side p, .right-side h1, .right-side h2 {
+	text-align: right;
+}
+
+.left-side p, .left-side h1, .left-side h2 {
+	text-align: left;
+}
+
+.color-doge {
+	background: #F2E9C6;
+}
+
+.padded-description {
+	padding: 20px;
+}
+
+.center {
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.the-moon {
+	margin: 0 auto;
+	background-image: url("/images/moon.png");
+	background-repeat: no-repeat;
+	width: 250px;
+	height: 250px;
+}
+
+.countdown-clock-container {
+	padding-top: 91px;
+}
+
+.countdown-clock {
+	padding: 10px;
+	background-color: rgba(255,255,255,0.5);;
+	border-radius: 30px;
+}
+
