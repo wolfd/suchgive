@@ -2,7 +2,7 @@
 <div class="row color-doge">
   <div class="col-md-4 color-lightdoge">
     <div class="left-side">
-    	<h1><?=$battle['zero_name']?></h4>
+    	<h1><?=$battle['zero_name']?></h1>
     	<p><?=$battle['zero_description']?></p>
     	<p><?=$battle['zero_url']?></p>
     	<h2>Donated: <?php echo ($battle['zero_shibetoshi'] / 1e8) ?> Ɖ</h2>
@@ -25,7 +25,7 @@
   </div>
   <div class="col-md-4 color-lightdoge">
     <div class="right-side">
-    	<h1><?=$battle['one_name']?></h4>
+    	<h1><?=$battle['one_name']?></h1>
     	<p><?=$battle['one_description']?></p>
     	<p><?=$battle['one_url']?></p>
     	<h2>Donated: <?php echo ($battle['one_shibetoshi'] / 1e8) ?> Ɖ</h2>
