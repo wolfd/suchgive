@@ -62,7 +62,7 @@
 
 .the-moon {
     position: relative;
-    /*margin: 0 auto;*/
+    margin: 0 auto;
     background-image: url("/images/moon.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -73,18 +73,27 @@
 
 .the-earth {
     position: relative;
+    margin: 0 auto;
     background-image: url("/images/earth.png");
     background-repeat: no-repeat;
     background-size: contain;
-    width: 512px;
-    height: 512px;
+    width: 128px;
+    height: 128px;
+    top: -256px;
     z-index: 80;
 }
 
 .reward-banner {
     position: relative;
-    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    height: 512px;
+    width: 512px;
     z-index: 101;
+}
+
+.reward-banner-text {
+    text-align: center;
 }
 
 .spaceship {

@@ -1,6 +1,7 @@
 	</div>
 	<footer>
-		<!--Legal Security Site Cost Donation Link: DGJk4eK1kMh6DosG1pqRMpMSMXXAPX6EnQ-->
+        <p class="lead">competitive giving in the name of doge</p>
+        <!--Legal Security Site Cost Donation Link: DGJk4eK1kMh6DosG1pqRMpMSMXXAPX6EnQ-->
 	</footer>
 	</div><!-- /.container -->
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
