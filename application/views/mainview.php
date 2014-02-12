@@ -1,4 +1,16 @@
 <script type="text/javascript" src="/js/countdown.js"></script>
+<div class="col-md-4 text-center">
+    <div class=""><h4>Time Left</h4></div>
+    <div class="countdown-clock-container">
+        <div id="countdown-clock" class="center countdown-clock"></div>
+    </div>
+    <h4><?=$battle['battle_description']?></h4>
+    <div class="reward-pool">
+        <h3>Reward Pool:</h3>
+        <h2><?php echo ($battle['reward_shibetoshi'] / 1e8) ?> Ɖ</h2>
+        <p>Doge that will go to the winning charity at the end of the battle</p>
+    </div>
+</div>
 <div class="row color-doge">
   <div class="col-md-4 color-lightdoge">
     <div class="left-side">
@@ -7,20 +19,6 @@
     	<p><?=$battle['zero_url']?></p>
     	<h2>Donated: <?php echo ($battle['zero_shibetoshi'] / 1e8) ?> Ɖ</h2>
     	<p><?php if ($logged_in) echo $zero_address;?></p>
-    </div>
-  </div>
-  <div class="col-md-4 text-center">
-    <div class=""><h4>Time Left</h4></div>
-    <div class="the-moon">
-      <div class="countdown-clock-container">
-        <div id="countdown-clock" class="center countdown-clock"></div>
-      </div>
-    </div>
-    <h4><?=$battle['battle_description']?></h4>
-    <div class="reward-pool">
-      <h3>Reward Pool:</h3>
-      <h2><?php echo ($battle['reward_shibetoshi'] / 1e8) ?> Ɖ</h2>
-      <p>Doge that will go to the winning charity at the end of the battle</p>
     </div>
   </div>
   <div class="col-md-4 color-lightdoge">
