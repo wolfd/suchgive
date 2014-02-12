@@ -65,6 +65,7 @@
     /*margin: 0 auto;*/
     background-image: url("/images/moon.png");
     background-repeat: no-repeat;
+    background-size: contain;
     width: 512px;
     height: 512px;
     z-index: 100;
@@ -74,7 +75,7 @@
     position: relative;
     background-image: url("/images/earth.png");
     background-repeat: no-repeat;
-    background-size: 512px;
+    background-size: contain;
     width: 512px;
     height: 512px;
     z-index: 80;
@@ -90,6 +91,7 @@
     position: relative;
     background-image: url("/images/spaceship.png");
     background-repeat: no-repeat;
+    background-size: contain;
     width: 256px;
     height: 512px;
     z-index: 90;

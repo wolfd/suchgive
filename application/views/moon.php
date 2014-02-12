@@ -8,7 +8,7 @@
             <h2>REWARD</h2>
             <h2>MONIES</h2>
         </div>
-        <div class="earth"></div>
+        <div class="the-earth"></div>
     </div>
 </div>
 <?php
