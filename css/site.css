@@ -1,63 +1,63 @@
 .suchgive-content {
-	padding-top: 50px;
+    padding-top: 50px;
 }
 
 .captcha {
-	padding: 10px;
+    padding: 10px;
 }
 
 .left-side, .right-side {
-	margin: 10px;
-	padding: 10px;
-	background: #F2F0EA;
+    margin: 10px;
+    padding: 10px;
+    background: #F2F0EA;
 }
 
 .left-side {
-	-webkit-box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
-	-moz-box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
-	box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
+    box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
 }
 
 .right-side {
-	-webkit-box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
-	-moz-box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
-	box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
+    box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
 }
 
 .right-side p, .right-side h1, .right-side h2 {
-	text-align: right;
+    text-align: right;
 }
 
 .left-side p, .left-side h1, .left-side h2 {
-	text-align: left;
+    text-align: left;
 }
 
 .color-doge {
-	background: #F2E9C6;
+    background: #F2E9C6;
 }
 
 .padded-description {
-	padding: 20px;
+    padding: 20px;
 }
 
 .center {
-	display: block;
+    display: block;
     margin-left: auto;
     margin-right: auto
 }
 
 .countdown-clock-container {
-	padding-top: 91px;
+    padding-top: 91px;
 }
 
 .countdown-clock {
-	padding: 10px;
-	background-color: rgba(255,255,255,0.5);;
-	border-radius: 30px;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.5);;
+    border-radius: 30px;
 }
 
 .moon-scene {
-    height: 750px;
+    height: 256px;
 }
 
 .the-moon {
@@ -66,9 +66,25 @@
     background-image: url("/images/moon.png");
     background-repeat: no-repeat;
     background-size: contain;
-    width: 512px;
-    height: 512px;
+    width: 128px;
+    height: 128px;
+    top: -32px;
     z-index: 100;
+}
+
+.reward-banner {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    height: 128px;
+    width: 128px;
+    z-index: 101;
+}
+
+.reward-banner-text {
+    text-align: center;
+    font-size: 12pt;
+    font-family: 'Comic Sans MS', cursive;
 }
 
 .the-earth {
@@ -77,23 +93,10 @@
     background-image: url("/images/earth.png");
     background-repeat: no-repeat;
     background-size: contain;
-    width: 128px;
-    height: 128px;
-    top: -256px;
+    width: 16px;
+    height: 16px;
+    top: 0px;
     z-index: 80;
-}
-
-.reward-banner {
-    position: relative;
-    display: table-cell;
-    vertical-align: middle;
-    height: 512px;
-    width: 512px;
-    z-index: 101;
-}
-
-.reward-banner-text {
-    text-align: center;
 }
 
 .spaceship {
@@ -101,9 +104,17 @@
     background-image: url("/images/spaceship.png");
     background-repeat: no-repeat;
     background-size: contain;
-    width: 256px;
-    height: 512px;
+    margin-left: 128px;
+    width: 32px;
+    height: 64px;
     z-index: 90;
+    -sand-transform-origin-y: 56px;
+    -sand-transform: rotate(-90deg) translateX(236px);
+}
+
+.no-size {
+    width: 0;
+    height: 0;
 }
 
 .percent-next-to-spaceship {
@@ -111,3 +122,104 @@
     z-index: 91;
 }
 
+@media (max-width: 992px) {
+    .form-control {
+        width: 128px !important;
+    }
+}
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .moon-scene {
+        height: 256px;
+    }
+
+    .the-moon {
+        width: 128px;
+        height: 128px;
+        top: -32px;
+    }
+
+    .reward-banner {
+        height: 128px;
+        width: 128px;
+    }
+
+    .reward-banner-text {
+        font-size: 12pt;
+    }
+
+    .the-earth {
+        width: 16px;
+        height: 16px;
+        top: 0px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .moon-scene {
+        height: 320px;
+    }
+
+    .the-moon {
+        width: 256px;
+        height: 256px;
+        top: -64px;
+    }
+
+    .reward-banner {
+        height: 256px;
+        width: 256px;
+    }
+
+    .reward-banner-text {
+        font-size: 20pt;
+    }
+
+    .the-earth {
+        width: 64px;
+        height: 64px;
+        top: 0px;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .moon-scene {
+        height: 425px;
+    }
+
+    .the-moon {
+        width: 380px;
+        height: 380px;
+        top: -80px;
+    }
+
+    .reward-banner {
+        width: 380px;
+        height: 380px;
+    }
+
+    .reward-banner-text {
+        font-size: 40pt;
+    }
+
+    .the-earth {
+        width: 45px;
+        height: 45px;
+        top: 0px;
+    }
+
+    .spaceship {
+        margin-left: 128px;
+        width: 32px;
+        height: 64px;
+        -sand-transform-origin-y: 56px;
+        -sand-transform: rotate(-90deg) translateX(236px);
+    }
+}
