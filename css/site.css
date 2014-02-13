@@ -182,9 +182,23 @@
     }
 
     .the-earth {
-        width: 64px;
-        height: 64px;
+        width: 32px;
+        height: 32px;
         top: 0px;
+    }
+
+    .spaceship {
+        margin-left: 91.022px;
+        width: 22.755px;
+        height: 45.511px;
+    }
+
+    .spaceship-left {
+        -sand-transform: translateX(14.222px) translateY(64px) rotate(-90deg) translateX(-120.888px) !important
+    }
+
+    .spaceship-right {
+        -sand-transform: scaleX(-1) translateX(-32px) translateX(-45.511px) translateX(27.733px) translateY(64px) rotate(270deg) translateX(-120.888px)
     }
 }
 
@@ -219,7 +233,16 @@
         margin-left: 128px;
         width: 32px;
         height: 64px;
-        -sand-transform-origin-y: 56px;
-        -sand-transform: rotate(-90deg) translateX(236px);
+    }
+
+    .spaceship-left {
+        transform: translateX(20px) translateY(90px) rotate(-90deg) translateX(-170px)
+    }
+
+    .spaceship-right {
+        -sand-transform: scaleX(-1) translateX(-45px) translateX(-64px) translateX(39px) translateY(90px) rotate(270deg) translateX(-170px)
     }
 }
+
+
+
