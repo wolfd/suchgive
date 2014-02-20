@@ -5,7 +5,10 @@
         <div class="the-moon">
             <div class="reward-banner">
                 <h2 amount="0"class="reward-banner-text">REWARD</h2>
-                <h2 id="reward-amount" class="reward-banner-text" amount="0">0 &ETH</h2>
+                <h2 id="reward-amount" class="reward-banner-text jsonly" amount="0">0 &ETH</h2>
+                <noscript>
+                    <h2 class="reward-banner-text"><?=$realtime['reward_pool_raised']?> &ETH</h2>
+                </noscript>
             </div>
         </div>
     </div>
@@ -13,19 +16,33 @@
         <div class="the-earth"></div>
     </div>
     <div class="scene-container">
-        <div id="spaceship-left" class="spaceship spaceship-left"></div>
+        <div id="spaceship-left" class="spaceship spaceship-left jsonly"></div>
     </div>
     <div class="scene-container">
-        <div id="spaceship-right" class="spaceship spaceship-right"></div>
+        <div id="spaceship-right" class="spaceship spaceship-right jsonly"></div>
     </div>
     <div class="scene-container">
         <div class="specialfix">
-            <div class="charity-mini-info left-charity-mini-info">
+            <div class="charity-mini-info left-charity-mini-info jsonly">
                 <p id="left-charity-mini-info-amount" class="left-charity-mini-info-amount lead" amount="0">0 &ETH</p>
+                <p id="left-charity-mini-info-percent" class="left-charity-mini-info-percent" amount="0">0&#37;</p>
             </div>
-            <div class="charity-mini-info right-charity-mini-info">
+            <noscript>
+                <div class="charity-mini-info left-charity-mini-info">
+                    <p class="left-charity-mini-info-amount lead"><?=$realtime['charity_zero_raised']?> &ETH</p>
+                    <p class="left-charity-mini-info-percent"><?=$realtime['charity_zero_percentage']?>&#37;</p>
+                </div>
+            </noscript>
+            <div class="charity-mini-info right-charity-mini-info jsonly">
                 <p id="right-charity-mini-info-amount" class="right-charity-mini-info-amount lead" amount="0">0 &ETH</p>
+                <p id="right-charity-mini-info-percent" class="right-charity-mini-info-percent" amount="0">0&#37;</p>
             </div>
+            <noscript>
+                <div class="charity-mini-info right-charity-mini-info">
+                    <p class="right-charity-mini-info-amount lead"><?=$realtime['charity_one_raised']?> &ETH</p>
+                    <p class="right-charity-mini-info-percent"><?=$realtime['charity_one_percentage']?>&#37;</p>
+                </div>
+            </noscript>
         </div>
     </div>
 </div>

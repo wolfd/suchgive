@@ -24,10 +24,24 @@ class Main extends CI_Controller {
         $data['battle'] = $this->_getCurrentCharity();
         if (isset($data['battle']) && isset($data['battle']['related_charity_zero']))
         {
+            $zero_amount = $data['battle']['zero_shibetoshi'] / 2;
+            $one_amount = $data['battle']['one_shibetoshi'] / 2;
+            $reward_pool = $zero_amount + $one_amount;
+            $funding_goal = $data['battle']['funding_goal'] * 1e8;
+
+            $zero_percentage = (($funding_goal > 0) ? ($zero_amount / $funding_goal) * 100 : 0);
+            $one_percentage = (($funding_goal > 0) ? ($one_amount / $funding_goal) * 100 : 0);
+
             $data['battle_running'] = true;
-            $data['battle']['reward_shibetoshi'] = ($data['battle']['zero_shibetoshi'] + $data['battle']['one_shibetoshi']) / 2;
-            $data['battle']['zero_shibetoshi'] = $data['battle']['zero_shibetoshi'] / 2;
-            $data['battle']['one_shibetoshi'] = $data['battle']['one_shibetoshi'] / 2;
+            $data['battle']['reward_shibetoshi'] = $reward_pool;
+            $data['battle']['zero_shibetoshi'] = $zero_amount;
+            $data['battle']['one_shibetoshi'] = $one_amount;
+            // for noscript tags, in lieu of js updates
+            $data['realtime'] = array(  'charity_zero_raised' => $zero_amount / 1e8,
+                'charity_one_raised' => $one_amount / 1e8,
+                'charity_zero_percentage' => $zero_percentage,
+                'charity_one_percentage' => $one_percentage,
+                'reward_pool_raised' => $reward_pool / 1e8);
 
         }
         else
@@ -54,6 +68,12 @@ class Main extends CI_Controller {
             $data['battle']['zero_shibetoshi'] = "0";
             $data['battle']['one_shibetoshi'] = "0";
             $data['battle']['reward_shibetoshi'] = "0";
+            // for noscript tags, in lieu of js updates
+            $data['realtime'] = array(  'charity_zero_raised' => 0,
+                'charity_one_raised' => 0,
+                'charity_zero_percentage' => 0,
+                'charity_one_percentage' => 0,
+                'reward_pool_raised' => 0);
         }
         //get the current user if logged in
         if ($data['logged_in'])
@@ -95,7 +115,7 @@ class Main extends CI_Controller {
             $zero_amount = $data['battle']['zero_shibetoshi'] / 2;
             $one_amount = $data['battle']['one_shibetoshi'] / 2;
             $reward_pool = $zero_amount + $one_amount;
-            $funding_goal = $data['battle']['funding_goal'];
+            $funding_goal = $data['battle']['funding_goal'] * 1e8;
 
 
             $zero_percentage = (($funding_goal > 0) ? ($zero_amount / $funding_goal) * 100 : 0);
