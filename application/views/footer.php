@@ -1,7 +1,10 @@
 </div>
 <footer>
     <p class="lead">competitive giving in the name of doge</p>
-    <p class="text-muted">Site Cost Donation Address: DGJk4eK1kMh6DosG1pqRMpMSMXXAPX6EnQ</p>
+    <p class="text-muted">
+        Site Cost Donation Address: DGJk4eK1kMh6DosG1pqRMpMSMXXAPX6EnQ
+        <a class="pull-right" href="https://www.digitalocean.com/?refcode=0dbb169834ce">Proudly served by DigitalOcean</a>
+    </p>
 </footer>
 </div><!-- /.container -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

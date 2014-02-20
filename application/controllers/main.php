@@ -47,6 +47,8 @@ class Main extends CI_Controller {
             $data['battle']['one_url'] = "";
             $data['battle']['zero_description'] = "";
             $data['battle']['one_description'] = "";
+            $data['battle']['zero_tag_line'] = "";
+            $data['battle']['one_tag_line'] = "";
             $data['battle']['zero_account'] = "";
             $data['battle']['one_account'] = "";
             $data['battle']['zero_shibetoshi'] = "0";
@@ -92,15 +94,12 @@ class Main extends CI_Controller {
         {
             $zero_amount = $data['battle']['zero_shibetoshi'] / 2;
             $one_amount = $data['battle']['one_shibetoshi'] / 2;
-            $current_time = time();
-            $start_date = strtotime($data['battle']['start_date']);
-            $end_date = strtotime($data['battle']['end_date']);
-            $time_ratio = (($end_date - $current_time) / ($end_date - $start_date) * 0.7) + 0.3;
+            $reward_pool = $zero_amount + $one_amount;
+            $funding_goal = $data['battle']['funding_goal'];
 
 
-            $total = $zero_amount + $one_amount;
-            $zero_percentage = (($total > 0) ? ($zero_amount / $total) * 100 * $time_ratio : 0);
-            $one_percentage = (($total > 0) ? ($one_amount / $total) * 100 * $time_ratio: 0);
+            $zero_percentage = (($funding_goal > 0) ? ($zero_amount / $funding_goal) * 100 : 0);
+            $one_percentage = (($funding_goal > 0) ? ($one_amount / $funding_goal) * 100 : 0);
 
             $this->output
                 ->set_content_type('application/json')
@@ -108,7 +107,7 @@ class Main extends CI_Controller {
                     'charity_one_raised' => $one_amount / 1e8,
                     'charity_zero_percentage' => $zero_percentage,
                     'charity_one_percentage' => $one_percentage,
-                    'reward_pool_raised' => $total / 1e8)));
+                    'reward_pool_raised' => $reward_pool / 1e8)));
         }
         else
         {
@@ -139,6 +138,8 @@ class Main extends CI_Controller {
 								c1.url AS one_url,
 								c0.description AS zero_description,
 								c1.description AS one_description,
+                                c0.tag_line AS zero_tag_line,
+                                c1.tag_line AS one_tag_line,
 								c0.account AS zero_account,
 								c1.account AS one_account,
 								c0.shibetoshi_received AS zero_shibetoshi,

@@ -73,7 +73,7 @@
 }
 
 .moon-scene {
-    height: 256px;
+    height: 150px;
     background-color: #000;
     position: relative;
 }
@@ -113,7 +113,7 @@
     background-size: contain;
     width: 16px;
     height: 16px;
-    top: 192px;
+    top: 128px;
     z-index: 80;
 }
 
@@ -147,6 +147,14 @@
     border-top: none;
     background-color: #FFF;
     z-index: 610;
+}
+
+.funding-goal-label {
+    margin-bottom: 0;
+}
+
+.funding-goal-amount {
+    margin-top: 5px;
 }
 
 .charity-description {
@@ -278,7 +286,7 @@
     }
 
     .moon-scene {
-        height: 256px;
+        height: 150px;
     }
 
     .the-moon {
@@ -299,7 +307,7 @@
     .the-earth {
         width: 16px;
         height: 16px;
-        top: 0px;
+        top: 128px;
     }
 }
 
@@ -308,6 +316,8 @@
     .media-query-spaceship {
         height: 300px;
         width: 256px;
+        margin-left: -124px;
+        margin-right: 124px;
     }
 
     .moon-scene {
@@ -348,6 +358,8 @@
     .media-query-spaceship {
         height: 300px;
         width: 380px;
+        margin-left: -180px;
+        margin-right: 180px;
     }
 
     .moon-scene {

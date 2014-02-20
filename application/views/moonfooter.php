@@ -21,6 +21,7 @@
     }
 
     $(document).ready(function(){
+        // load prefix-free
         (function($, self){
 
             if(!$ || !self) {
@@ -37,6 +38,13 @@
 
         })(window.jQuery, window.PrefixFree);
 
+        // main suchgive moon graphic code
+
+        // initialize global variables
+        animatedBefore = false;
+        storedData = 0;
+        storedStatus = "";
+
         // get elements for the doge counters
         leftCharityAmount = $("#left-charity-mini-info-amount");
         rightCharityAmount = $("#right-charity-mini-info-amount");
@@ -46,12 +54,11 @@
         leftSpaceship = $("#spaceship-left");
         rightSpaceship = $("#spaceship-right");
 
-        storedData = 0;
-        storedStatus = "";
-
         // fun media query storage thing!
         centerPointY = $(".media-query-spaceship").css("height");
         spaceshipTransformY = $(".media-query-spaceship").css("width");
+        spaceshipLeftLanded = $(".media-query-spaceship").css("margin-left");
+        spaceshipRightLanded = $(".media-query-spaceship").css("margin-right");
 
         // periodically update the graphic
         function periodically() {
@@ -66,6 +73,8 @@
         $(window).resize(function(){
             centerPointY = $(".media-query-spaceship").css("height");
             spaceshipTransformY = $(".media-query-spaceship").css("width");
+            spaceshipLeftLanded = $(".media-query-spaceship").css("margin-left");
+            spaceshipRightLanded = $(".media-query-spaceship").css("margin-right");
             setMoonGraphic(true);
         });
 
@@ -85,7 +94,6 @@
                 storedData = data;
                 storedStatus = status;
             }
-
             // if noTransition is set to true, warp immediately to the new position.
             if (noTransition) {
                 leftSpaceship.css("transition", "none");
@@ -104,20 +112,40 @@
 
             // set the positions correctly, if a charity has won, land the ship on the moon
             if (data.charity_zero_percentage >= 100) {
-                leftSpaceshipCss = "translateX(-180px) rotate(110deg) scale(-1)";
+                if (!animatedBefore) {
+                    leftSpaceship.css("transition", "none");
+                    leftSpaceship.css("transform", "translateX("+spaceshipLeftLanded+") translateX(-100px) rotate(90deg) scale(-1)");
+
+                    setTimeout(function(){
+                        leftSpaceship.css("transition", "3s ease-in-out");
+                        leftSpaceship.css("transform", "translateX("+spaceshipLeftLanded+") rotate(110deg) scale(-1)");
+                    }, 500);
+
+                } else {
+                    leftSpaceship.css("transform", "translateX("+spaceshipLeftLanded+") rotate(110deg) scale(-1)");
+                }
             } else {
-                leftSpaceshipCss = "translateY("+spaceshipTransformY+") translateY(-"+centerPointY+") rotate("+angleLeft+"deg) translateX("+centerPointY+") scale("+scaleLeft+") translateZ(0px)";
+                // set the css transforms of the spaceships to the new value created
+                leftSpaceship.css("transform", "translateY("+spaceshipTransformY+") translateY(-"+centerPointY+") rotate("+angleLeft+"deg) translateX("+centerPointY+") scale("+scaleLeft+") translateZ(0px)");
             }
 
             if (data.charity_one_percentage >= 100) {
-                rightSpaceshipCss = "translateX(180px) rotate(250deg) scale(1)";
-            } else {
-                rightSpaceshipCss = "translateY("+spaceshipTransformY+") translateY(-"+centerPointY+") rotate("+angleRight+"deg) translateX("+centerPointY+") scale("+scaleRight+") translateZ(0px)";
-            }
+                if (!animatedBefore) {
+                    rightSpaceship.css("transition", "none");
+                    rightSpaceship.css("transform", "translateX("+spaceshipRightLanded+") translateX(100px) rotate(270deg) scale(-1)");
 
-            // set the css transforms of the spaceships to the new values created
-            leftSpaceship.css("transform", leftSpaceshipCss);
-            rightSpaceship.css("transform", rightSpaceshipCss);
+                    setTimeout(function(){
+                        rightSpaceship.css("transition", "3s ease-in-out");
+                        rightSpaceship.css("transform", "translateX("+spaceshipRightLanded+") rotate(250deg) scale(-1)");
+                    }, 500);
+
+                } else {
+                    rightSpaceship.css("transform", "translateX("+spaceshipRightLanded+") rotate(250deg) scale(-1)");
+                }
+            } else {
+                // set the css transforms of the spaceships to the new value created
+                rightSpaceship.css("transform", "translateY("+spaceshipTransformY+") translateY(-"+centerPointY+") rotate("+angleRight+"deg) translateX("+centerPointY+") scale("+scaleRight+") translateZ(0px)");
+            }
 
             // get stored data from the doge counters' amount attribute
             var leftDoge = leftCharityAmount.attr("amount");
@@ -133,13 +161,18 @@
             startNumberAnimate(leftCharityAmount, leftDoge, data.charity_zero_raised, " &ETH");
             startNumberAnimate(rightCharityAmount, rightDoge, data.charity_one_raised, " &ETH");
             startNumberAnimate(rewardAmount, rewardDoge, data.reward_pool_raised, " &ETH");
+
+            if (!noTransition) {
+                animatedBefore = true;
+            }
         }
 
         function updateMoonGraphic(data, status) {
             setMoonGraphic(false, data, status);
+
         }
 
-        setTimeout(periodically, 1000);
+        setTimeout(periodically, 100);
         setMoonGraphic(true);
     });
 </script>
