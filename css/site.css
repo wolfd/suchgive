@@ -183,36 +183,40 @@
 
 .charity-description {
     position: relative;
-    border-right: 1px dashed gray;
     z-index: 600;
     padding-bottom: 20px;
 }
 
 .charity-description-right {
-    border-right: none;
-    border-left: 1px dashed gray;
     text-align: right;
 }
 
+.charity-vertical-divider {
+    margin: 0 auto;
+    width: 0;
+    height: 300px;
+    border: 1px dashed gray;
+}
+
 .charity-description-heading {
-    width: 60%;
+    width: 75%;
 }
 
 .charity-description-heading-right {
-    margin-left: 40%;
+    margin-left: 15%;
     float: right;
 }
 
 .charity-description-text {
     position: relative;
-    width: 60%;
-    margin-right: 40%;
+    width: 75%;
+    margin-right: 15%;
     backface-visibility: hidden;
 }
 
 .charity-description-text-right {
     float: right;
-    margin-left: 40%;
+    margin-left: 15%;
     margin-right: 0;
 }
 
@@ -297,6 +301,10 @@
     .charity-description-text-right {
         float: right;
         width: 100%;
+    }
+
+    .charity-vertical-divider {
+        display: none;
     }
 }
 

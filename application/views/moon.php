@@ -50,7 +50,7 @@
     <p class="lead funding-goal-label">Funding Goal</p>
     <h2 class="funding-goal-amount"><?=$battle['funding_goal']?> &ETH</h2>
 </div>
-<div class="col-md-6 charity-description">
+<div class="col-md-5 charity-description">
     <div class="charity-description-heading">
         <h3><?=$battle['zero_name']?></h3>
         <a href="<?=$battle['zero_url']?>"><?=$battle['zero_url']?></a>
@@ -71,7 +71,10 @@
         <p class="text-muted">Thank you for your donation!</p>
     </div>
 </div>
-<div class="col-md-6 charity-description charity-description-right">
+<div class="col-md-2">
+    <div class="charity-vertical-divider"></div>
+</div>
+<div class="col-md-5 charity-description charity-description-right">
     <div class="charity-description-heading charity-description-heading-right clearfix">
         <h3><?=$battle['one_name']?></h3>
         <a href="<?=$battle['one_url']?>"><?=$battle['one_url']?></a>
