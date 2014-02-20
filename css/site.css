@@ -2,6 +2,10 @@
     padding-top: 50px;
 }
 
+.suchgive-content-padded {
+    padding: 16px;
+}
+
 .inner-shadow {
     box-shadow: inset 0 0 10px #000;
 }
@@ -21,14 +25,10 @@
 }
 
 .left-side {
-    -webkit-box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
     box-shadow: 10px 0px 4px -6px rgba(0,0,0,0.75);
 }
 
 .right-side {
-    -webkit-box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
     box-shadow: -10px 0px 4px -6px rgba(0,0,0,0.75);
 }
 

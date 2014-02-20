@@ -2,14 +2,13 @@
 <footer>
     <p class="lead">competitive giving in the name of doge</p>
     <p class="text-muted">
-        Site Cost Donation Address: DGJk4eK1kMh6DosG1pqRMpMSMXXAPX6EnQ
+        2014 suchgive
         <a class="pull-right" href="https://www.digitalocean.com/?refcode=0dbb169834ce">Proudly served by DigitalOcean</a>
     </p>
 </footer>
 </div><!-- /.container -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://code.jquery.com/jquery.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/js/bootstrap.min.js"></script>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -19,7 +18,6 @@
 
     ga('create', 'UA-47994807-1', 'suchgive.org');
     ga('send', 'pageview');
-
 </script>
 </body>
 </html>
