@@ -2,6 +2,14 @@
     padding-top: 50px;
 }
 
+.inner-shadow {
+    box-shadow: inset 0 0 10px #000;
+}
+
+.outer-shadow {
+    box-shadow: 0 0 10px #000;
+}
+
 .captcha {
     padding: 10px;
 }
@@ -56,8 +64,18 @@
     border-radius: 30px;
 }
 
+.scene-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .moon-scene {
     height: 256px;
+    background-color: #000;
+    position: relative;
 }
 
 .the-moon {
@@ -95,7 +113,7 @@
     background-size: contain;
     width: 16px;
     height: 16px;
-    top: 0px;
+    top: 192px;
     z-index: 80;
 }
 
@@ -107,9 +125,9 @@
     margin-left: 128px;
     width: 32px;
     height: 64px;
-    z-index: 90;
-    -sand-transform-origin-y: 56px;
-    -sand-transform: rotate(-90deg) translateX(236px);
+    z-index: 70;
+    -webkit-backface-visibility: hidden;
+    display: none;
 }
 
 .no-size {
@@ -117,23 +135,148 @@
     height: 0;
 }
 
-.percent-next-to-spaceship {
+.funding-goal-box {
     position: relative;
-    z-index: 91;
+    margin: 0 auto;
+    width: 33%;
+    height: 80px;
+    margin-bottom: -80px;
+    text-align: center;
+    vertical-align: middle;
+    /*border: 1px solid black;*/
+    border-top: none;
+    background-color: #FFF;
+    z-index: 610;
+}
+
+.charity-description {
+    position: relative;
+    border-right: 1px dashed gray;
+    z-index: 600;
+    padding-bottom: 20px;
+}
+
+.charity-description-right {
+    border-right: none;
+    border-left: 1px dashed gray;
+    text-align: right;
+}
+
+.charity-description-heading {
+    width: 60%;
+}
+
+.charity-description-heading-right {
+    margin-left: 40%;
+    float: right;
+}
+
+.charity-description-text {
+    position: relative;
+    width: 60%;
+    margin-right: 40%;
+    backface-visibility: hidden;
+}
+
+.charity-description-text-right {
+    float: right;
+    margin-left: 40%;
+    margin-right: 0;
+}
+
+.specialfix {
+    display: inline-block;
+    width: 100%;
+    height: 0;
+}
+
+.charity-mini-info {
+    position: absolute;
+    bottom: 0px;
+    padding: 15px;
+    color: #EEE;
+}
+
+.left-charity-mini-info {
+    float: left;
+    left: 0px;
+}
+
+.left-charity-mini-info-name {
+
+}
+
+.left-charity-mini-info-amount {
+    margin-bottom: 0;
+}
+
+.right-charity-mini-info {
+    float: right;
+    right: 0px;
+    text-align: right;
+}
+
+.right-charity-mini-info-name {
+
+}
+
+.right-charity-mini-info-amount {
+    margin-bottom: 0;
+}
+
+.media-query-spaceship {
+    display: none;
+    width: 0;
 }
 
 @media (max-width: 992px) {
     .form-control {
         width: 128px !important;
     }
-}
 
+    .funding-goal-box {
+        width: 100%;
+        height: 80px;
+        margin-bottom: 0;
+        /*border-bottom: none;*/
+    }
+
+    .charity-description {
+        border: none;
+    }
+
+    .charity-description-right {
+        border: none;
+    }
+
+    .charity-description-heading {
+        width: 100%;
+    }
+
+    .charity-description-heading-right {
+        margin-left: 0%;
+        float: right;
+    }
+
+    .charity-description-text {
+        width: 100%;
+    }
+
+    .charity-description-text-right {
+        float: right;
+        width: 100%;
+    }
+}
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+    .media-query-spaceship {
+        width: 768px;
+    }
+
     .moon-scene {
         height: 256px;
     }
@@ -162,6 +305,11 @@
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+    .media-query-spaceship {
+        height: 300px;
+        width: 256px;
+    }
+
     .moon-scene {
         height: 320px;
     }
@@ -184,28 +332,26 @@
     .the-earth {
         width: 32px;
         height: 32px;
-        top: 0px;
+        top: 256px;
     }
 
     .spaceship {
-        margin-left: 91.022px;
-        width: 22.755px;
-        height: 45.511px;
-    }
-
-    .spaceship-left {
-        -sand-transform: translateX(14.222px) translateY(64px) rotate(-90deg) translateX(-120.888px) !important
-    }
-
-    .spaceship-right {
-        -sand-transform: scaleX(-1) translateX(-32px) translateX(-45.511px) translateX(27.733px) translateY(64px) rotate(270deg) translateX(-120.888px)
+        margin: 0 auto;
+        width: 23px;
+        height: 46px;
+        display: block;
     }
 }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+    .media-query-spaceship {
+        height: 300px;
+        width: 380px;
+    }
+
     .moon-scene {
-        height: 425px;
+        height: 460px;
     }
 
     .the-moon {
@@ -226,23 +372,13 @@
     .the-earth {
         width: 45px;
         height: 45px;
-        top: 0px;
+        top: 380px;
     }
 
     .spaceship {
-        margin-left: 128px;
+        margin: 0 auto;
         width: 32px;
         height: 64px;
-    }
-
-    .spaceship-left {
-        transform: translateX(20px) translateY(90px) rotate(-90deg) translateX(-170px)
-    }
-
-    .spaceship-right {
-        -sand-transform: scaleX(-1) translateX(-45px) translateX(-64px) translateX(39px) translateY(90px) rotate(270deg) translateX(-170px)
+        display: block;
     }
 }
-
-
-

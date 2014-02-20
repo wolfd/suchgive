@@ -87,7 +87,39 @@ class Main extends CI_Controller {
     //responds to ajax requests about the current standings in json format
     public function update()
     {
+        $data['battle'] = $this->_getCurrentCharity();
+        if (isset($data['battle']) && isset($data['battle']['related_charity_zero']))
+        {
+            $zero_amount = $data['battle']['zero_shibetoshi'] / 2;
+            $one_amount = $data['battle']['one_shibetoshi'] / 2;
+            $current_time = time();
+            $start_date = strtotime($data['battle']['start_date']);
+            $end_date = strtotime($data['battle']['end_date']);
+            $time_ratio = (($end_date - $current_time) / ($end_date - $start_date) * 0.7) + 0.3;
 
+
+            $total = $zero_amount + $one_amount;
+            $zero_percentage = (($total > 0) ? ($zero_amount / $total) * 100 * $time_ratio : 0);
+            $one_percentage = (($total > 0) ? ($one_amount / $total) * 100 * $time_ratio: 0);
+
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array( 'charity_zero_raised' => $zero_amount / 1e8,
+                    'charity_one_raised' => $one_amount / 1e8,
+                    'charity_zero_percentage' => $zero_percentage,
+                    'charity_one_percentage' => $one_percentage,
+                    'reward_pool_raised' => $total / 1e8)));
+        }
+        else
+        {
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array( 'charity_zero_raised' => 0,
+                    'charity_one_raised' => 0,
+                    'charity_zero_percentage' => 0,
+                    'charity_one_percentage' => 0,
+                    'reward_pool_raised' => 0)));
+        }
     }
 
     //returns the currently active charity in array format.

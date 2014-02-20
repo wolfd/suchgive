@@ -9,7 +9,8 @@ class Test extends CI_Controller {
         $data['active_page'] = "test";
 
         $this->load->view('header', $data);
-        $this->load->view('moon');
+        $this->load->view('moon', $data);
+        $this->load->view('moonfooter', $data);
         $this->load->view('footer');
     }
 }

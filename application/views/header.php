@@ -70,4 +70,4 @@
 </div>
 
 <div class="container">
-    <div class="suchgive-content">
+    <div class="suchgive-content inner-shadow clearfix">
