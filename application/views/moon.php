@@ -59,7 +59,17 @@
     <div class="charity-description-text">
         <?=$battle['zero_description']?>
     </div>
-    <button type="button" class="btn btn-primary btn-lg charity-give-button">GIVE!</button>
+    <button id="give-zero" type="button" class="btn btn-primary btn-lg charity-give-button">GIVE!</button>
+    <div id="modal-of-donate-zero" class="modal-of-donate">
+        <div class="modal-exit-bar"><div class="modal-get-out-now-pls"><span id="modal-close" class="glyphicon glyphicon-remove"></span></div></div>
+        <h3><?=$battle['zero_name']?></h3>
+        <p class="lead">Address to donate to:</p>
+        <p>
+            <?php if($logged_in) { echo $zero_address; } else { echo '<p class="text-danger">please log in to donate</p>'; }?>
+        </p>
+        <p class="text-info">Your donation will take about a minute to complete. When the donation is complete, half of it will be directed to the charity you selected, and the other half will be put into the reward pool.</p>
+        <p class="text-muted">Thank you for your donation!</p>
+    </div>
 </div>
 <div class="col-md-6 charity-description charity-description-right">
     <div class="charity-description-heading charity-description-heading-right clearfix">
@@ -70,5 +80,15 @@
     <div class="charity-description-text charity-description-text-right">
         <?=$battle['one_description']?>
     </div>
-    <button type="button" class="btn btn-primary btn-lg charity-give-button">GIVE!</button>
+    <button id="give-one" type="button" class="btn btn-primary btn-lg charity-give-button">GIVE!</button>
+    <div id="modal-of-donate-one" class="modal-of-donate">
+        <div class="modal-exit-bar"><div class="modal-get-out-now-pls"><span id="modal-close" class="glyphicon glyphicon-remove"></span></div></div>
+        <h3><?=$battle['one_name']?></h3>
+        <p class="lead">Address to donate to:</p>
+        <p>
+            <?php if($logged_in) { echo $one_address; } else { echo '<p class="text-danger">please log in to donate</p>'; }?>
+        </p>
+        <p class="text-info">Your donation will take about a minute to complete. When the donation is complete, half of it will be directed to the charity you selected, and the other half will be put into the reward pool.</p>
+        <p class="text-muted">Thank you for your donation!</p>
+    </div>
 </div>

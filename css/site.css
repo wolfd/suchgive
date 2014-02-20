@@ -14,6 +14,30 @@
     box-shadow: 0 0 10px #000;
 }
 
+.modal-of-donate {
+    /*position: absolute;
+    margin: 0 auto;
+    width: 60%;*/
+    margin-top: -10px;
+    box-shadow: 0 0 10px #FFF;
+    background-color: #FFF;
+    border: 1px solid gray;
+    padding: 10px;
+
+
+    display: none;
+}
+
+.modal-exit-bar {
+    width: 100%;
+    background-color: #EEE;
+}
+
+.modal-get-out-now-pls {
+    float: right;
+    padding: 5px;
+}
+
 .captcha {
     padding: 10px;
 }
