@@ -188,22 +188,21 @@ function updateMoonGraphic(data, status) {
     setMoonGraphic(false, data, status);
 }
 
+// set up donation box functionality
 $(function(){
     $("#give-zero").click(function() {
         $("#modal-of-donate-zero").toggle();
     });
 
-    $("#modal-close").click(function() {
+    $("#modal-close-zero").click(function() {
         $("#modal-of-donate-zero").hide();
     });
-});
 
-$(function(){
     $("#give-one").click(function() {
         $("#modal-of-donate-one").toggle();
     });
 
-    $("#modal-close").click(function() {
+    $("#modal-close-one").click(function() {
         $("#modal-of-donate-one").hide();
     });
 });

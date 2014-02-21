@@ -64,10 +64,8 @@
             }
             ?>
         </div><!--/.nav-collapse -->
-
-
     </div>
 </div>
 
 <div class="container">
-    <div class="suchgive-content inner-shadow clearfix">
+    <div class="suchgive-content clearfix">
