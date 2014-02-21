@@ -66,7 +66,7 @@
         <p class="lead">Address to donate to:</p>
         <p>
             <?php if($logged_in) { ?>
-        <p class="doge-address"><?=$zero_address?></p>
+        <p id="address-zero" class="doge-address"><?=$zero_address?></p><button id="copy-zero" type="button" class="btn btn-default" data-clipboard-target="address-zero" data-toggle="tooltip" data-placement="bottom" title="click to copy to clipboard">copy</button>
         <?php } else { ?>
             <p class="text-danger">please log in to donate</p>
         <?php }?>
@@ -94,7 +94,7 @@
         <p class="lead">Address to donate to:</p>
         <p>
             <?php if($logged_in) { ?>
-        <p class="doge-address"><?=$one_address?></p>
+        <p id="address-one" class="doge-address"><?=$one_address?></p><button id="copy-one" type="button" class="btn btn-default" data-clipboard-target="address-one" data-toggle="tooltip" data-placement="bottom" title="click to copy to clipboard">copy</button>
         <?php } else { ?>
             <p class="text-danger">please log in to donate</p>
         <?php }?>

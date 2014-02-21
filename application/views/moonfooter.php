@@ -1,4 +1,5 @@
 <span class="media-query-spaceship"></span>
+<script src="/js/ZeroClipboard.min.js"></script>
 <script>
 $(document).ready(function(){
     // load prefix-free
@@ -201,11 +202,31 @@ $(function(){
 
     $("#give-one").click(function() {
         $("#modal-of-donate-one").toggle();
-        ga('send', 'event', 'button', 'click', 'give-zero');
+        ga('send', 'event', 'button', 'click', 'give-one');
     });
 
     $("#modal-close-one").click(function() {
         $("#modal-of-donate-one").hide();
+    });
+});
+
+$('#copy-zero').tooltip();
+$('#copy-one').tooltip();
+var client-zero = new ZeroClipboard( document.getElementById("copy-zero"), {
+    moviePath: "/js/ZeroClipboard.swf"
+});
+client-zero.on( "load", function(client) {
+    client-zero.on( "complete", function(client, args) {
+        console.log("copied to clipboard");
+    });
+});
+
+var client-one = new ZeroClipboard( document.getElementById("copy-one"), {
+    moviePath: "/js/ZeroClipboard.swf"
+});
+client-one.on( "load", function(client) {
+    client-zero.on( "complete", function(client, args) {
+        console.log("copied to clipboard");
     });
 });
 </script>

@@ -84,7 +84,7 @@
             <?php
             }
             ?>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </div>
 
