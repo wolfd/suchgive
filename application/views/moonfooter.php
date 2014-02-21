@@ -212,20 +212,20 @@ $(function(){
 
 $('#copy-zero').tooltip();
 $('#copy-one').tooltip();
-var client-zero = new ZeroClipboard( document.getElementById("copy-zero"), {
+var client_zero = new ZeroClipboard( document.getElementById("copy-zero"), {
     moviePath: "/js/ZeroClipboard.swf"
 });
-client-zero.on( "load", function(client) {
-    client-zero.on( "complete", function(client, args) {
+client_zero.on( "load", function(client) {
+    client_zero.on( "complete", function(client, args) {
         console.log("copied to clipboard");
     });
 });
 
-var client-one = new ZeroClipboard( document.getElementById("copy-one"), {
+var client_one = new ZeroClipboard( document.getElementById("copy-one"), {
     moviePath: "/js/ZeroClipboard.swf"
 });
-client-one.on( "load", function(client) {
-    client-zero.on( "complete", function(client, args) {
+client_one.on( "load", function(client) {
+    client_zero.on( "complete", function(client, args) {
         console.log("copied to clipboard");
     });
 });
