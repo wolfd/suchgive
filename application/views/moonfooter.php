@@ -192,6 +192,7 @@ function updateMoonGraphic(data, status) {
 $(function(){
     $("#give-zero").click(function() {
         $("#modal-of-donate-zero").toggle();
+        ga('send', 'event', 'button', 'click', 'give-zero');
     });
 
     $("#modal-close-zero").click(function() {
@@ -200,6 +201,7 @@ $(function(){
 
     $("#give-one").click(function() {
         $("#modal-of-donate-one").toggle();
+        ga('send', 'event', 'button', 'click', 'give-zero');
     });
 
     $("#modal-close-one").click(function() {
