@@ -209,24 +209,4 @@ $(function(){
         $("#modal-of-donate-one").hide();
     });
 });
-
-$('#copy-zero').tooltip();
-$('#copy-one').tooltip();
-var client_zero = new ZeroClipboard( document.getElementById("copy-zero"), {
-    moviePath: "/js/ZeroClipboard.swf"
-});
-client_zero.on( "load", function(client) {
-    client_zero.on( "complete", function(client, args) {
-        console.log("copied to clipboard");
-    });
-});
-
-var client_one = new ZeroClipboard( document.getElementById("copy-one"), {
-    moviePath: "/js/ZeroClipboard.swf"
-});
-client_one.on( "load", function(client) {
-    client_zero.on( "complete", function(client, args) {
-        console.log("copied to clipboard");
-    });
-});
 </script>

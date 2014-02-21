@@ -26,7 +26,7 @@
         </p>
         <p>
             We greatly appreciate donations to help offset costs from server hosting and maintenance. Donations will be used solely for this purpose, and may be sent to:<br>
-            <p class="doge-address">DGJk4eK1kMh6DosG1pqRMpMSMXXAPX6EnQ</p>
+            <input readonly type="text" onClick="this.select();" class="doge-address-small" value="DGJk4eK1kMh6DosG1pqRMpMSMXXAPX6EnQ">
         </p>
     </div>
 </div>

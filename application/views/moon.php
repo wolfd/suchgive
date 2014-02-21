@@ -66,9 +66,8 @@
         <p class="lead">Address to donate to:</p>
         <p>
             <?php if($logged_in) { ?>
-        <p id="address-zero" class="doge-address"><?=$zero_address?></p><button id="copy-zero" type="button" class="btn btn-default" data-clipboard-target="address-zero" data-toggle="tooltip" data-placement="bottom" title="click to copy to clipboard">copy</button>
-        <?php } else { ?>
-            <p class="text-danger">please log in to donate</p>
+                <input readonly class="doge-address" type="text" onClick="this.select();" value="<?=$zero_address?>"/><?php } else { ?>
+        <p class="text-danger">please log in to donate</p>
         <?php }?>
         </p>
         <p class="text-info">Your donation will take about a minute to complete. When the donation is complete, half of it will be directed to the charity you selected, and the other half will be put into the reward pool.</p>
@@ -94,9 +93,9 @@
         <p class="lead">Address to donate to:</p>
         <p>
             <?php if($logged_in) { ?>
-        <p id="address-one" class="doge-address"><?=$one_address?></p><button id="copy-one" type="button" class="btn btn-default" data-clipboard-target="address-one" data-toggle="tooltip" data-placement="bottom" title="click to copy to clipboard">copy</button>
-        <?php } else { ?>
-            <p class="text-danger">please log in to donate</p>
+                <input readonly class="doge-address doge-address-right" type="text" onClick="this.select();" value="<?=$one_address?>"/>
+            <?php } else { ?>
+        <p class="text-danger">please log in to donate</p>
         <?php }?>
         </p>
         <p class="text-info">Your donation will take about a minute to complete. When the donation is complete, half of it will be directed to the charity you selected, and the other half will be put into the reward pool.</p>
