@@ -63,7 +63,7 @@
                 ?>
                 <form class="navbar-form navbar-right" role="form" name="login-form" action="/account/login" method="post">
                     <div class="form-group">
-                        <input type="text" name="email" placeholder="email" class="form-control">
+                        <input type="text" name="nickname" placeholder="nickname" class="form-control">
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" placeholder="password" class="form-control">

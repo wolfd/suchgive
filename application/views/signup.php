@@ -1,77 +1,35 @@
-<?php 
+<h2>Sign up</h2>
+<?php
 $attributes = array('class' => 'form-horizontal');
-echo form_open('/account/signup', $attributes); 
+echo form_open('/account/signup', $attributes);
 ?>
-<fieldset>
-
-<!-- Form Name -->
-<legend>Sign up</legend>
-<?php 
+<?php
 echo validation_errors();
 echo $recaptcha;
 ?>
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="email">Email</label>
-  <div class="controls">
-    <input id="email" name="email" type="text" placeholder="doge@coin.net" class="input-xlarge" value="<?php echo set_value('email'); ?>" required="">
-    <p class="help-block">This is for identification only. We will not sell your email address.</p>
-  </div>
+<div class="form-group">
+    <label for="nickname">Nickname</label>
+    <input name="nickname" type="nickname" class="form-control" id="nickname" placeholder="Enter nickname" required>
 </div>
-
-<!-- Appended checkbox -->
-<div class="control-group">
-  <label class="control-label" for="nickname">Nickname</label>
-  <div class="controls">
-    <div class="input-append">
-      <input id="nickname" name="nickname" class="span2" type="text" placeholder="Doge" value="<?php echo set_value('nickname'); ?>" required="">
-    </div>
-    <p class="help-block">This is how other people will see your name in public leaderboards.</p>
-  </div>
+<div class="form-group">
+    <p>Password can contain alphanumeric and dash characters. Must be 8 characters or longer.</p>
+    <label for="password">Password</label>
+    <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+    <label for="passwordconfirm">Confirm Password</label>
+    <input name="passwordconfirm" type="passwordconfirm" class="form-control" id="passwordconfirm" placeholder="Password" required>
 </div>
-
-<!--<input name="anonymous" type="checkbox" value="anonymous" <?php echo set_checkbox('anonymous', 'anonymous'); ?>>
-<p class="help-block">Check the box if you wish this nickname to remain anonymous.</p>
-Doesn't work yet.
--->
-
-<!-- Password input-->
-<div class="control-group">
-  <label class="control-label" for="password">Password</label>
-  <div class="controls">
-    <input id="password" name="password" type="password" placeholder="" class="input-xlarge" required="">
-    <p class="help-block">Password can contain alphanumeric and dash characters. Must be 8 characters or longer.</p>
-  </div>
+<div class="checkbox">
+    <label>
+        <input name="anonymous" type="checkbox"> Remain anonymous: your nickname will not be listed on the site anywhere. Donations will show as from "anonymous".
+    </label>
 </div>
-
-<div class="control-group">
-  <label class="control-label" for="passwordconfirm">Confirm Password</label>
-  <div class="controls">
-    <input id="passwordconfirm" name="passwordconfirm" type="password" placeholder="" class="input-xlarge" required="">
-    
-  </div>
+<div class="captcha">
+    <?php
+    require_once(APPPATH.'libraries/recaptchalib.php');
+    echo recaptcha_get_html(RECAPTCHA_PUBLIC_KEY);
+    ?>
 </div>
-
-<div class="control-group">
-  <div class="controls">
-    <div class="captcha">
+<button type="submit" class="btn btn-default">Sign up</button>
 <?php
-  require_once(APPPATH.'libraries/recaptchalib.php');
-  echo recaptcha_get_html(RECAPTCHA_PUBLIC_KEY);
-?>
-    </div>
-  </div>
-</div>
-
-<!-- Button -->
-<div class="control-group">
-  <label class="control-label" for="submit"></label>
-  <div class="controls">
-    <button id="submit" name="submit" class="btn btn-primary">Sign me up!</button>
-  </div>
-</div>
-
-</fieldset>
-<?php 
-echo form_close(); 
+echo form_close();
 ?>

@@ -43,7 +43,7 @@ class Account extends CI_Controller {
 
 	public function login() 
 	{
-		$this->ion_auth->login($this->input->post('email'), $this->input->post('password'));
+		$this->ion_auth->login($this->input->post('nickname'), $this->input->post('password'));
 
 		redirect('/', 'refresh');
 	}
@@ -62,7 +62,6 @@ class Account extends CI_Controller {
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean|is_unique[users.email]');
 		$this->form_validation->set_rules('nickname', 'Username', 'required|max_length[32]|xss_clean|is_unique[users.nickname]');
 		$this->form_validation->set_rules('password', 'Password', 'required|alpha_dash|min_length[8]|xss_clean');
 		$this->form_validation->set_rules('passwordconfirm', 'Password Confirmation', 'required|matches[password]|xss_clean');
@@ -86,15 +85,14 @@ class Account extends CI_Controller {
 			{
 				$this->load->view('signupsuccess');
 
-				$email    = strtolower($this->input->post('email'));
+				$nickname = strtolower($this->input->post('nickname'));
 				$password = $this->input->post('password');
 
 				$additional_data = array(
-					'nickname' => $this->input->post('nickname'),
 					'anonymous'  => $this->input->post('anonymous'),
 				);
 
-				$this->ion_auth->register($email, $password, $email, $additional_data);
+				$this->ion_auth->register($nickname, $password, $nickname, $additional_data);
 			}
 			else
 			{	
@@ -152,10 +150,5 @@ class Account extends CI_Controller {
 
 		return $response->row_array()['SUM(`shibetoshi`)'];
 	}
-
-
-
-
-
 }
 ?>
