@@ -10,11 +10,6 @@
     <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
     <label for="passwordconfirm">Confirm Password</label>
     <input name="passwordconfirm" type="password" class="form-control" id="passwordconfirm" placeholder="Password" required>
-    <div class="checkbox">
-        <label>
-            <input name="anonymous" type="checkbox"> Remain anonymous: your nickname will not be listed on the site anywhere. Donations will show as from "anonymous".
-        </label>
-    </div>
     <div class="captcha">
         <?php
         require_once(APPPATH.'libraries/recaptchalib.php');

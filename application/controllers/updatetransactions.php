@@ -32,6 +32,7 @@ class UpdateTransactions extends CI_Controller {
 
         $this->_updateTransactionTable();
         $this->_recheckLastXTransactions(500);
+        $this->_checkUnconfirmed();
     }
 
     private function _updateAll()
@@ -190,6 +191,20 @@ class UpdateTransactions extends CI_Controller {
             //var_dump($transactions);
         }
 
+    }
+
+    private function _checkUnconfirmed()
+    {
+        // get all dogecoin addresses ever made (in this server)
+        $response = $this->db->query('SELECT transactions.tx_id FROM transactions WHERE transactions.confirmed = 0');
+        foreach ($response->result() as $transaction)
+        {
+            $tx = $this->rpc->gettransaction($transaction);
+
+            $this->db->query("  UPDATE transactions
+                                SET `confirmed` = ".($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0)."
+                                WHERE transactions.tx_id = ".$tx['txid'].";");
+        }
     }
 
     //returns the currently active charity in array format.

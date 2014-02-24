@@ -1,1 +1,2 @@
-<h3>Yay! Now you can continue making the world a better place</h3>
+<h3>Success!</h3>
+<p>Thanks for signing up. Be sure to write down your nickname and password somewhere.</p>
