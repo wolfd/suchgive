@@ -29,7 +29,7 @@ class UpdateTransactions extends CI_Controller {
         $charities = $this->_getCurrentCharity();
 
         if (!(empty($charities) || empty($charities['zero_account']) || empty($charities['one_account'])
-            || empty($charities['zero_id'])      || empty($charities['one_id'])))
+                                || empty($charities['zero_id'])      || empty($charities['one_id'])))
         {
             $this->_updateSingle($charities['zero_account'], $charities['zero_id']);
             $this->_updateSingle($charities['one_account'], $charities['one_id']);
@@ -51,7 +51,7 @@ class UpdateTransactions extends CI_Controller {
             || empty($battle_info['zero_id'])      || empty($battle_info['one_id'])
             || empty($battle_info['battle_id'])    || empty($battle_info['battle_status'])))
         {
-            if ($battle_info['status'] == 'active')
+            if ($battle_info['battle_status'] == 'active')
             {
                 $zero_confirmed = $this->JSONtoAmount($this->rpc->getreceivedbyaccount($battle_info['zero_account'], MINIMUM_CONFIRMATIONS_FINAL)) / 2;
                 $one_confirmed = $this->JSONtoAmount($this->rpc->getreceivedbyaccount($battle_info['one_account'], MINIMUM_CONFIRMATIONS_FINAL)) / 2;

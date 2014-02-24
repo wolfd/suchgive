@@ -71,7 +71,7 @@ class Top extends CI_Controller {
         }
         else
         {
-            return '<div class="center padded-description">No Data Found</div>';
+            return '<div class="center padded-description">No Battle Currently Running</div>';
         }
     }
 
