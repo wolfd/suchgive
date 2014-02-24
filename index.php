@@ -46,6 +46,13 @@ if (defined('ENVIRONMENT'))
 	}
 }
 
+// ADDED BY SUCHGIVE. ALL TIMES SHOULD BE IN UTC.
+// http://stackoverflow.com/a/19922408/831768
+if( ! ini_get('date.timezone') )
+{
+    date_default_timezone_set('UTC');
+}
+
 /*
  *---------------------------------------------------------------
  * SYSTEM FOLDER NAME

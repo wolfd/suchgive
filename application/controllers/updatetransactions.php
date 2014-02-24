@@ -56,6 +56,8 @@ class UpdateTransactions extends CI_Controller {
                 $zero_confirmed = $this->JSONtoAmount($this->rpc->getreceivedbyaccount($battle_info['zero_account'], MINIMUM_CONFIRMATIONS_FINAL)) / 2;
                 $one_confirmed = $this->JSONtoAmount($this->rpc->getreceivedbyaccount($battle_info['one_account'], MINIMUM_CONFIRMATIONS_FINAL)) / 2;
                 $funding_goal = $this->JSONtoAmount($battle_info['funding_goal']);
+                //http://stackoverflow.com/a/2215360/831768
+                $mysqltime = date ("Y-m-d H:i:s", time());
 
                 // Check for confirmed victory
                 if ($zero_confirmed >= $funding_goal || $one_confirmed >= $funding_goal)
@@ -64,19 +66,19 @@ class UpdateTransactions extends CI_Controller {
                     {
                         //Wat.
                         //Check the blockchain to see which charity reached it first.
-                        $update_query_string = 'UPDATE charity_battles SET status = \'contested\', end_date = '.time().' WHERE charity_battles.id ='.$battle_info['battle_id'].';';
+                        $update_query_string = 'UPDATE charity_battles SET status = \'contested\', end_date = \''.$mysqltime.'\' WHERE charity_battles.id ='.$battle_info['battle_id'].';';
                         $response = $this->db->query($update_query_string);
                     }
                     elseif ($zero_confirmed >= $funding_goal)
                     {
                         //Great. We have a winner.
-                        $update_query_string = 'UPDATE charity_battles SET status = \'zerowin\', end_date = '.time().' WHERE charity_battles.id ='.$battle_info['battle_id'].';';
+                        $update_query_string = 'UPDATE charity_battles SET status = \'zerowin\', end_date = \''.$mysqltime.'\' WHERE charity_battles.id ='.$battle_info['battle_id'].';';
                         $response = $this->db->query($update_query_string);
                     }
                     elseif ($one_confirmed >= $funding_goal)
                     {
                         //Great. We have a winner.
-                        $update_query_string = 'UPDATE charity_battles SET status = \'onewin\', end_date = '.time().' WHERE charity_battles.id ='.$battle_info['battle_id'].';';
+                        $update_query_string = 'UPDATE charity_battles SET status = \'onewin\', end_date = \''.$mysqltime.'\' WHERE charity_battles.id ='.$battle_info['battle_id'].';';
                         $response = $this->db->query($update_query_string);
                     }
                 }
