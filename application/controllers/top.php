@@ -51,7 +51,9 @@ class Top extends CI_Controller {
 
     private function _getTopTenTableCharity($id)
     {
-        $query_string = 'SELECT users.nickname AS `nickname`, SUM(transactions.shibetoshi) / 100000000 AS `doge`
+        if(!empty($id))
+        {
+            $query_string = 'SELECT users.nickname AS `nickname`, SUM(transactions.shibetoshi) / 100000000 AS `doge`
                          FROM users
                          JOIN transactions ON transactions.shibetoshi
                          WHERE transactions.user_id = users.id AND transactions.charity_id = '.$id.'
@@ -59,13 +61,18 @@ class Top extends CI_Controller {
                          ORDER BY `doge` DESC
                          LIMIT 10';
 
-        $response = $this->db->query($query_string);
+            $response = $this->db->query($query_string);
 
-        $tmpl = array('table_open' => '<table class="table table-bordered text-center" style="width: auto; padding: 10px;">');
+            $tmpl = array('table_open' => '<table class="table table-bordered text-center" style="width: auto; padding: 10px;">');
 
-        $this->table->set_template($tmpl);
+            $this->table->set_template($tmpl);
 
-        return $this->table->generate($response);
+            return $this->table->generate($response);
+        }
+        else
+        {
+            return '<div class="center padded-description">No Data Found</div>';
+        }
     }
 
     //returns the currently active charity in array format.

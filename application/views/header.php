@@ -57,6 +57,7 @@
             <ul class="nav navbar-nav">
                 <li<?php echo ($active_page == "home" ? ' class="active"' : ''); ?>><a href="/">home</a></li>
                 <li<?php echo ($active_page == "about" ? ' class="active"' : ''); ?>><a href="/about">about</a></li>
+                <li<?php echo ($active_page == "top" ? ' class="active"' : ''); ?>><a href="/top">top</a></li>
             </ul>
             <?php
             if (!$logged_in) {

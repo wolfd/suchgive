@@ -22,7 +22,7 @@ class Main extends CI_Controller {
 
         //get info related to the current battle and it's standings
         $data['battle'] = $this->_getCurrentCharity();
-        if (isset($data['battle']) && isset($data['battle']['related_charity_zero']))
+        if (!(empty($data['battle']) || empty($data['battle']['related_charity_zero'])))
         {
             $zero_amount = $data['battle']['zero_shibetoshi'] / 2;
             $one_amount = $data['battle']['one_shibetoshi'] / 2;
@@ -92,7 +92,7 @@ class Main extends CI_Controller {
             //PROCESS DOGECOIN ADDRESS GENERATION - MAY LATER CHANGE TO GETTING THE ADDRESSES ON BUTTON CLICK
             $addresses = $this->_getAddressesForUser($data['user'], $data['battle']);
 
-            if (isset($addresses))
+            if (!empty($addresses))
             {
                 $data['zero_address'] = $addresses['zero'];
                 $data['one_address'] = $addresses['one'];
@@ -110,7 +110,7 @@ class Main extends CI_Controller {
     public function update()
     {
         $data['battle'] = $this->_getCurrentCharity();
-        if (isset($data['battle']) && isset($data['battle']['related_charity_zero']))
+        if (!(empty($data['battle']) || empty($data['battle']['related_charity_zero'])))
         {
             $zero_amount = $data['battle']['zero_shibetoshi'] / 2;
             $one_amount = $data['battle']['one_shibetoshi'] / 2;
@@ -145,32 +145,32 @@ class Main extends CI_Controller {
     private function _getCurrentCharity()
     {
         $querystring = 'SELECT cb.related_charity_zero,
-								cb.related_charity_one,
-								cb.funding_goal,
-								cb.start_date,
-								cb.end_date,
-								cb.description AS battle_description,
-								c0.id AS zero_id,
-								c1.id AS one_id,
-								c0.name AS zero_name,
-								c1.name AS one_name,
-								c0.url AS zero_url,
-								c1.url AS one_url,
-								c0.description AS zero_description,
-								c1.description AS one_description,
+                                cb.related_charity_one,
+                                cb.funding_goal,
+                                cb.start_date,
+                                cb.end_date,
+                                cb.description AS battle_description,
+                                c0.id AS zero_id,
+                                c1.id AS one_id,
+                                c0.name AS zero_name,
+                                c1.name AS one_name,
+                                c0.url AS zero_url,
+                                c1.url AS one_url,
+                                c0.description AS zero_description,
+                                c1.description AS one_description,
                                 c0.tag_line AS zero_tag_line,
                                 c1.tag_line AS one_tag_line,
-								c0.account AS zero_account,
-								c1.account AS one_account,
-								c0.shibetoshi_received AS zero_shibetoshi,
-								c1.shibetoshi_received AS one_shibetoshi
-								FROM  `charity_battles` cb
-								JOIN charities c0
-								ON cb.related_charity_zero = c0.id
-								JOIN charities c1
-								ON cb.related_charity_one = c1.id
-								WHERE cb.active=1
-								LIMIT 1';
+                                c0.account AS zero_account,
+                                c1.account AS one_account,
+                                c0.shibetoshi_received AS zero_shibetoshi,
+                                c1.shibetoshi_received AS one_shibetoshi
+                                FROM  `charity_battles` cb
+                                JOIN charities c0
+                                ON cb.related_charity_zero = c0.id
+                                JOIN charities c1
+                                ON cb.related_charity_one = c1.id
+                                WHERE cb.active=1
+                                LIMIT 1';
         $query = $this->db->query($querystring);
         if ($query->num_rows() > 0) {
             return $query->row_array();
@@ -186,7 +186,7 @@ class Main extends CI_Controller {
     {
         $addresses['zero'] = "";
         $addresses['one'] = "";
-        if (isset($user->id) && isset($battle['related_charity_zero']) && isset($battle['related_charity_one'])) {
+        if (!(empty($user->id) || empty($battle['related_charity_zero']) || empty($battle['related_charity_one']))) {
             // query for existing addresses
             $query_zero = $this->db->query('SELECT * FROM  `addresses` WHERE  `related_user` ='.$user->id.' AND  `related_charity` ='.$battle['related_charity_zero']);
             $query_one = $this->db->query('SELECT * FROM  `addresses` WHERE  `related_user` ='.$user->id.' AND  `related_charity` ='.$battle['related_charity_one']);
@@ -200,7 +200,7 @@ class Main extends CI_Controller {
             else // no address for zero exists, create one
             {
                 try {
-                    if (isset($battle['zero_account'])) {
+                    if (!empty($battle['zero_account'])) {
                         $addresses['zero'] = $this->rpc->getnewaddress($battle['zero_account']); //generate a new address for this account
                         $insert_query_string = 'INSERT INTO `give`.`addresses` (`related_user`, `related_charity`, `address`) VALUES ('.$user->id.', '.$battle['related_charity_zero'].', \''.$addresses['zero'].'\');';
 
@@ -209,7 +209,7 @@ class Main extends CI_Controller {
                     }
 
                 } catch (Exception $e) {
-                    error_log("Could not create dogecoin address for user: ".$user->email." possibly for the reasons stated here: $e the query string was $insert_query_string");
+                    error_log("Could not create dogecoin address for user: ".$user->username." possibly for the reasons stated here: $e the query string was $insert_query_string");
                 }
             }
 
@@ -222,7 +222,7 @@ class Main extends CI_Controller {
             else
             {
                 try {
-                    if (isset($battle['one_account'])) {
+                    if (!empty($battle['one_account'])) {
                         $addresses['one'] = $this->rpc->getnewaddress($battle['one_account']); //generate a new address for this account
                         $insert_query_string = 'INSERT INTO `give`.`addresses` (`related_user`, `related_charity`, `address`) VALUES ('.$user->id.', '.$battle['related_charity_one'].', \''.$addresses['one'].'\');';
 
@@ -231,7 +231,7 @@ class Main extends CI_Controller {
                     }
 
                 } catch (Exception $e) {
-                    error_log("Could not create dogecoin address for user: ".$user->email." possibly for the reasons stated here: $e the query string was $insert_query_string");
+                    error_log("Could not create dogecoin address for user: ".$user->username." possibly for the reasons stated here: $e the query string was $insert_query_string");
                 }
             }
 
