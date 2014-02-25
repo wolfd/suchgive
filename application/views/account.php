@@ -1,10 +1,10 @@
 <div class="suchgive-content-padded">
-    <h2>My Account</h2>
-    <h3>Donation Stats</h3>
-    <?php
-    echo "Total donated: ".($account_data['total_donated'] / 1e8)." Doge";
-    ?>
-    <h3>Donation transactions</h3>
+    <h2>my account</h2>
+    <p>welcome, <?=$account_data['nickname']?>!</p>
+    <a href="/account/change">change account information</a>
+    <h3>donation stats</h3>
+    <p>total donated: <?php echo ($account_data['total_donated'] / 1e8);?> doge</p>
+    <h3>donation transactions</h3>
     <div class="table-responsive">
     <?php
     echo $account_data['donation_table'];

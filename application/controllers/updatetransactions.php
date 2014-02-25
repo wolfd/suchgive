@@ -65,21 +65,30 @@ class UpdateTransactions extends CI_Controller {
                     if ($zero_confirmed >= $funding_goal && $one_confirmed >= $funding_goal)
                     {
                         //Wat.
-                        //Check the blockchain to see which charity reached it first.
-                        $update_query_string = 'UPDATE charity_battles SET status = \'contested\', end_date = \''.$mysqltime.'\' WHERE charity_battles.id ='.$battle_info['battle_id'].';';
-                        $response = $this->db->query($update_query_string);
+                        //Check the blockchain manually to see which charity reached it first.
+                        $response = $this->db->query(  'UPDATE charity_battles
+                                                        SET status = \'contested\', end_date = \'?\'
+                                                        WHERE charity_battles.id =?;',
+                                                        array($mysqltime,
+                                                            $battle_info['battle_id']));
                     }
                     elseif ($zero_confirmed >= $funding_goal)
                     {
                         //Great. We have a winner.
-                        $update_query_string = 'UPDATE charity_battles SET status = \'zerowin\', end_date = \''.$mysqltime.'\' WHERE charity_battles.id ='.$battle_info['battle_id'].';';
-                        $response = $this->db->query($update_query_string);
+                        $response = $this->db->query(  'UPDATE charity_battles
+                                                        SET status = \'zerowin\', end_date = \'?\'
+                                                        WHERE charity_battles.id =?;',
+                                                        array($mysqltime,
+                                                              $battle_info['battle_id']));
                     }
                     elseif ($one_confirmed >= $funding_goal)
                     {
                         //Great. We have a winner.
-                        $update_query_string = 'UPDATE charity_battles SET status = \'onewin\', end_date = \''.$mysqltime.'\' WHERE charity_battles.id ='.$battle_info['battle_id'].';';
-                        $response = $this->db->query($update_query_string);
+                        $response = $this->db->query(  'UPDATE charity_battles
+                                                        SET status = \'onewin\', end_date = \'?\'
+                                                        WHERE charity_battles.id =?;',
+                                                        array($mysqltime,
+                                                            $battle_info['battle_id']));
                     }
                 }
             }
@@ -101,19 +110,26 @@ class UpdateTransactions extends CI_Controller {
                 $chunk_size = count($transactions);
                 foreach ($transactions as $tx) {
                     $this->db->query("INSERT INTO `give`.`transactions` (`charity_id`, `address_id`, `user_id`, `tx_id`, `shibetoshi`, `confirmed`, `time_received`)
-                                        SELECT  a.related_charity,
-                                                a.id,
-                                                a.related_user,
-                                                '".$tx['txid']."',
-                                                ".$this->JSONtoAmount($tx['amount']).",
-                                                ".($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0).",
-                                                ".$tx['timereceived']."
-                                            FROM addresses a
-                                            WHERE a.address = '".$tx['address']."'
-                                            LIMIT 1
-                                        ON DUPLICATE KEY UPDATE
-                                            `confirmed` = '".($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0)."',
-                                            `time_received` = ".$tx['timereceived'].";");
+                                      SELECT  a.related_charity,
+                                              a.id,
+                                              a.related_user,
+                                              '?',
+                                              ?,
+                                              ?,
+                                              ?
+                                      FROM addresses a
+                                      WHERE a.address = '?'
+                                      LIMIT 1
+                                      ON DUPLICATE KEY UPDATE
+                                          `confirmed` = ?,
+                                          `time_received` = ?;",
+                                      array($tx['txid'],
+                                            $this->JSONtoAmount($tx['amount']),
+                                            ($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0),
+                                            $tx['timereceived'],
+                                            $tx['address'],
+                                            ($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0),
+                                            $tx['timereceived']));
                 }
                 $from = $from + TRANSACTION_DELTA;
                 $did_at_least_one = true;
@@ -124,8 +140,9 @@ class UpdateTransactions extends CI_Controller {
                 //update database with a new count of confirmed transactions (as to not exponentially overwhelm the server)
                 //but first, subtract TRANSACTION_DELTA from $from to get the last successful range (will cause some overlap, but not much)
                 $from = $from - TRANSACTION_DELTA + $chunk_size;
-                $update_transactions_recorded_string = "UPDATE  `give`.`charities` SET  `transactions_recorded` =  '".$from."' WHERE  `charities`.`id` =".$charity->id.";";
-                $this->db->query($update_transactions_recorded_string);
+                $this->db->query("UPDATE `give`.`charities` SET `transactions_recorded` = '?' WHERE `charities`.`id` = ?;",
+                    array(  $from,
+                            $charity->id));
             }
         }
     }
@@ -136,8 +153,11 @@ class UpdateTransactions extends CI_Controller {
         //getreceivedbyaccount
 
         $shibetoshi_received = $this->JSONtoAmount($this->rpc->getreceivedbyaccount($charity_account, MINIMUM_CONFIRMATIONS_GUESS));
-        $update_query_string = 'UPDATE  `give`.`charities` SET  `shibetoshi_received` = '.$shibetoshi_received.' WHERE  `charities`.`id` ='.$charity_id.';';
-        $response = $this->db->query($update_query_string);
+        $response = $this->db->query(  'UPDATE `give`.`charities`
+                                        SET `shibetoshi_received` = ?
+                                        WHERE `charities`.`id` = ?;',
+            array(  $shibetoshi_received,
+                    $charity_id));
     }
 
     private function _updateTransactionTable()
@@ -156,19 +176,26 @@ class UpdateTransactions extends CI_Controller {
                 $chunk_size = count($transactions);
                 foreach ($transactions as $tx) {
                     $this->db->query("INSERT INTO `give`.`transactions` (`charity_id`, `address_id`, `user_id`, `tx_id`, `shibetoshi`, `confirmed`, `time_received`)
-                                        SELECT  a.related_charity,
-                                                a.id,
-                                                a.related_user,
-                                                '".$tx['txid']."',
-                                                ".$this->JSONtoAmount($tx['amount']).",
-                                                ".($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0).",
-                                                ".$tx['timereceived']."
-                                            FROM addresses a
-                                            WHERE a.address = '".$tx['address']."'
-                                            LIMIT 1
-                                        ON DUPLICATE KEY UPDATE
-                                            `confirmed` = ".($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0).",
-                                            `time_received` = ".$tx['timereceived'].";");
+                                      SELECT  a.related_charity,
+                                              a.id,
+                                              a.related_user,
+                                              '?',
+                                              ?,
+                                              ?,
+                                              ?
+                                      FROM addresses a
+                                      WHERE a.address = '?'
+                                      LIMIT 1
+                                      ON DUPLICATE KEY UPDATE
+                                          `confirmed` = ?,
+                                          `time_received` = ?;",
+                                  array($tx['txid'],
+                                        $this->JSONtoAmount($tx['amount']),
+                                        ($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0),
+                                        $tx['timereceived'],
+                                        $tx['address'],
+                                        ($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0),
+                                        $tx['timereceived']));
                 }
                 $from = $from + $count;
                 $did_at_least_one = true;
@@ -179,8 +206,11 @@ class UpdateTransactions extends CI_Controller {
                 //update database with a new count of confirmed transactions (as to not exponentially overwhelm the server)
                 //but first, subtract $count from $from to get the last successful range (will cause some overlap, but not much)
                 $from = $from - $count + $chunk_size;
-                $update_transactions_recorded_string = "UPDATE  `give`.`charities` SET  `transactions_recorded` =  '".$from."' WHERE  `charities`.`id` =".$charity->id.";";
-                $this->db->query($update_transactions_recorded_string);
+                $this->db->query(  "UPDATE `give`.`charities`
+                                    SET `transactions_recorded` = ?
+                                    WHERE  `charities`.`id` = ?;",
+                    array(  $from,
+                            $charity->id));
             }
 
 
@@ -198,40 +228,41 @@ class UpdateTransactions extends CI_Controller {
             $tx = $this->rpc->gettransaction($transaction);
 
             $this->db->query("  UPDATE transactions
-                                SET `confirmed` = ".($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0)."
-                                WHERE transactions.tx_id = ".$tx['txid'].";");
+                                SET `confirmed` = ?
+                                WHERE transactions.tx_id = ?;",
+                array( ($tx['confirmations'] > MINIMUM_CONFIRMATIONS_FINAL ? 1 : 0),
+                        $tx['txid']));
         }
     }
 
     //returns the currently active charity in array format.
     private function _getCurrentCharity()
     {
-        $querystring = 'SELECT cb.related_charity_zero,
-                                cb.related_charity_one,
-                                cb.funding_goal,
-                                cb.start_date,
-                                cb.end_date,
-                                cb.description AS battle_description,
-                                cb.id AS battle_id,
-                                cb.status AS battle_status,
-                                c0.id AS zero_id,
-                                c1.id AS one_id,
-                                c0.name AS zero_name,
-                                c1.name AS one_name,
-                                c0.url AS zero_url,
-                                c1.url AS one_url,
-                                c0.description AS zero_description,
-                                c1.description AS one_description,
-                                c0.account AS zero_account,
-                                c1.account AS one_account
-                                FROM  `charity_battles` cb
-                                JOIN charities c0
-                                ON cb.related_charity_zero = c0.id
-                                JOIN charities c1
-                                ON cb.related_charity_one = c1.id
-                                WHERE cb.active=1
-                                LIMIT 1';
-        $query = $this->db->query($querystring);
+        $query = $this->db->query( 'SELECT cb.related_charity_zero,
+                                    cb.related_charity_one,
+                                    cb.funding_goal,
+                                    cb.start_date,
+                                    cb.end_date,
+                                    cb.description AS battle_description,
+                                    cb.id AS battle_id,
+                                    cb.status AS battle_status,
+                                    c0.id AS zero_id,
+                                    c1.id AS one_id,
+                                    c0.name AS zero_name,
+                                    c1.name AS one_name,
+                                    c0.url AS zero_url,
+                                    c1.url AS one_url,
+                                    c0.description AS zero_description,
+                                    c1.description AS one_description,
+                                    c0.account AS zero_account,
+                                    c1.account AS one_account
+                                    FROM  `charity_battles` cb
+                                    JOIN charities c0
+                                    ON cb.related_charity_zero = c0.id
+                                    JOIN charities c1
+                                    ON cb.related_charity_one = c1.id
+                                    WHERE cb.active=1
+                                    LIMIT 1');
         return $query->row_array();
     }
 

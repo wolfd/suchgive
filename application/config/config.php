@@ -16,7 +16,7 @@ require_once(APPPATH.'config/suchgive_config.php');
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://www.suchgive.org';
+$config['base_url']	= BASE_URL;
 
 /*
 |--------------------------------------------------------------------------

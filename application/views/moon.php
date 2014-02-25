@@ -66,9 +66,11 @@
         <p class="lead">Address to donate to:</p>
         <p>
             <?php if($logged_in) { ?>
-                <input readonly class="doge-address" type="text" onClick="this.select();" value="<?=$zero_address?>"/><?php } else { ?>
+                <input readonly class="doge-address hidden-xs hidden-sm" type="text" onclick="this.select();" value="<?=$zero_address?>"/>
+                <p class="doge-address hidden-md hidden-lg"><?=$zero_address?></p>
+            <?php } else { ?>
         <p class="text-danger">please log in to donate</p>
-        <?php }?>
+            <?php }?>
         </p>
         <p class="text-info">Your donation will take about a minute to complete. When the donation is complete, half of it will be directed to the charity you selected, and the other half will be put into the reward pool.</p>
         <p class="text-muted">Thank you for your donation!</p>
@@ -93,10 +95,11 @@
         <p class="lead">Address to donate to:</p>
         <p>
             <?php if($logged_in) { ?>
-                <input readonly class="doge-address doge-address-right" type="text" onClick="this.select();" value="<?=$one_address?>"/>
+                <input readonly class="doge-address doge-address-right hidden-xs hidden-sm" type="text" onclick="this.select();" value="<?=$one_address?>"/>
+                <p class="doge-address doge-address-right hidden-md hidden-lg"><?=$one_address?></p>
             <?php } else { ?>
         <p class="text-danger">please log in to donate</p>
-        <?php }?>
+            <?php }?>
         </p>
         <p class="text-info">Your donation will take about a minute to complete. When the donation is complete, half of it will be directed to the charity you selected, and the other half will be put into the reward pool.</p>
         <p class="text-muted">Thank you for your donation!</p>

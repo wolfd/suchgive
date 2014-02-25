@@ -13,3 +13,5 @@ define('DATABASE_DEFAULT_PASSWORD', '');
 define('RECAPTCHA_PRIVATE_KEY', '');
 define('RECAPTCHA_PUBLIC_KEY', '');
 define('DOGECOIND_RPC_URL', 'http://user:pass@127.0.0.1:22555');
+define('BASE_URL','https://www.suchgive.org');
+define('RECAPTCHA_ENABLED', TRUE);
